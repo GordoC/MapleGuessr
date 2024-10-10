@@ -6,15 +6,17 @@ namespace server.Data
     public class ApplicationDBContext: DbContext
     {
         public ApplicationDBContext(DbContextOptions dbContextOptions) 
-        : base(dbContextOptions) {
+        : base(dbContextOptions) 
+        {
             
         }
 
-        public DbSet<Map> Map { get; set; }
-        public DbSet<Region> Region { get; set; }
-        public DbSet<World> World { get; set; }
+        public DbSet<Map> Maps { get; set; }
+        public DbSet<Region> Regions { get; set; }
+        public DbSet<World> Worlds { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder) {
+        protected override void OnModelCreating(ModelBuilder modelBuilder) 
+        {
             modelBuilder.Entity<Region>()
                 .HasMany(r => r.Maps)
                 .WithOne(m => m.Region)
