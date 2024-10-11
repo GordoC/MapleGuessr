@@ -11,6 +11,10 @@ namespace server.Mappers
             {
                 Id = regionModel.Id,
                 Name = regionModel.Name,
+<<<<<<< HEAD
+=======
+                Maps = regionModel.Maps,
+>>>>>>> c748a68f1151d441f9ab9133f516380b9dbac3d1
                 WorldId = regionModel.WorldId
             };
         }
