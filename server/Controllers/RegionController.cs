@@ -24,11 +24,7 @@ namespace server.Controllers
             return Ok(regionsDto);
         }
 
-<<<<<<< HEAD
         [HttpGet("{id:int}")]
-=======
-        [HttpGet("{id}")]
->>>>>>> c748a68f1151d441f9ab9133f516380b9dbac3d1
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var region = await _regionRepository.GetByIdAsync(id);
