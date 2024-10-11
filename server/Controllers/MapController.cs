@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using server.Data;
+using server.Mappers;
 
 namespace server.Controllers
 {
@@ -14,19 +16,21 @@ namespace server.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var maps = _context.Maps.ToList();
+            var maps = await _context.Maps.ToListAsync();
 
-            return Ok(maps);
+            var mapsDto = maps.Select(m => m.ToMapDto());
+
+            return Ok(mapsDto);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById([FromRoute] int id)
+        public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            var map = _context.Maps.Find(id);
+            var map = await _context.Maps.FindAsync(id);
 
-            return map == null ? NotFound() : Ok(map);
+            return map == null ? NotFound() : Ok(map.ToMapDto());
         }
     }
 }

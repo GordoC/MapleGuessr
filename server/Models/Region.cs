@@ -6,7 +6,7 @@ namespace server.Models
         public string Name { get; set; } = string.Empty;
         public ICollection<Map> Maps { get; set; } = new HashSet<Map>();
         /// <summary>
-        /// // Foreign key to the parent entity (World)
+        /// Foreign key to the parent entity (World)
         /// </summary>
         public int? WorldId { get; set; }
         /// <summary>
