@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using server.Data;
+using server.Interfaces;
 using server.Mappers;
 
 namespace server.Controllers
@@ -9,26 +8,26 @@ namespace server.Controllers
     [ApiController]
     public class MapController : ControllerBase
     {
-        private readonly ApplicationDBContext _context;
-        public MapController(ApplicationDBContext context)
+        private readonly IMapRepository _mapRepository;
+        public MapController(IMapRepository mapRepository)
         {
-            _context = context;
+            _mapRepository = mapRepository;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var maps = await _context.Maps.ToListAsync();
+            var maps = await _mapRepository.GetAllAsync();
 
             var mapsDto = maps.Select(m => m.ToMapDto());
 
             return Ok(mapsDto);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            var map = await _context.Maps.FindAsync(id);
+            var map = await _mapRepository.GetByIdAsync(id);
 
             return map == null ? NotFound() : Ok(map.ToMapDto());
         }

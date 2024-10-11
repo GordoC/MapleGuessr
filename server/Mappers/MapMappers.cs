@@ -12,7 +12,8 @@ namespace server.Mappers
                 Id = mapModel.Id,
                 Name = mapModel.Name,
                 StreetName = mapModel.StreetName,
-                Image = mapModel.Image
+                Image = mapModel.Image,
+                RegionId = mapModel.RegionId
             };
         }
     }
