@@ -11,7 +11,8 @@ namespace server.Mappers
             {
                 Id = regionModel.Id,
                 Name = regionModel.Name,
-                WorldId = regionModel.WorldId
+                WorldId = regionModel.WorldId,
+                GameId = regionModel.GameId
             };
         }
     }

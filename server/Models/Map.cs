@@ -17,5 +17,9 @@ namespace server.Models
         /// Navigation property back to the parent entity (Region)
         /// </summary>
         public Region? Region { get; set; }
+        /// <summary>
+        /// GameId used for points
+        /// </summary>
+        public int? GameId { get; set; }
     }
 }

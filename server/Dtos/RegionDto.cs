@@ -7,5 +7,6 @@ namespace server.Dtos
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public int? WorldId { get; set; }
+        public int? GameId { get; set; }
     }
 }

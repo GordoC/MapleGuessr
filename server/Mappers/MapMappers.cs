@@ -13,7 +13,8 @@ namespace server.Mappers
                 Name = mapModel.Name,
                 StreetName = mapModel.StreetName,
                 Image = mapModel.Image,
-                RegionId = mapModel.RegionId
+                RegionId = mapModel.RegionId,
+                GameId = mapModel.GameId
             };
         }
     }
