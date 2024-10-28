@@ -44,5 +44,7 @@ app.UseHttpsRedirection();
 
 app.MapControllers();
 
+app.UseCors("reactApp");
+
 app.Run();
 

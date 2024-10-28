@@ -7,15 +7,27 @@ const GamePage = () => {
 
   useEffect(() => {
     // Fetch image 1
-    fetch('http://localhost:5227/server/map/id/3')
-      .then(response => response.json())
-      .then(data => setImage1(data.image))
+    fetch('https://localhost:7215/server/map/3', {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((response) => response.json())
+      .then((data) => setImage1(data.image))
       .catch(error => console.error('Error fetching image 1:', error));
 
     // Fetch image 2
-    fetch('http://localhost:5227/server/map/id/3')
-      .then(response => response.json())
-      .then(data => setImage2(data.image))
+    fetch('https://localhost:7215/server/map/3', {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((response) => response.json())
+      .then((data) => setImage2(data.image))
       .catch(error => console.error('Error fetching image 2:', error));
   }, []);
 
