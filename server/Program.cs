@@ -22,6 +22,15 @@ builder.Services.AddScoped<IMapRepository, MapRepository>();
 builder.Services.AddScoped<IRegionRepository, RegionRepository>();
 builder.Services.AddScoped<IWorldRepository, WorldRepository>();
 
+builder.Services.AddCors(options => {
+    options.AddPolicy("reactApp", policyBuilder => {
+        policyBuilder.WithOrigins("http://localhost:3000")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
