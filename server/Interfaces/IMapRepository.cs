@@ -6,5 +6,6 @@ namespace server.Interfaces
     {
         Task<List<Map>> GetAllAsync();
         Task<Map?> GetByIdAsync(int id);
+        Task<Map?> GetByGameIdAsync(int gameId);
     }
 }

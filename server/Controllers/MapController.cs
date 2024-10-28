@@ -31,5 +31,13 @@ namespace server.Controllers
 
             return map == null ? NotFound() : Ok(map.ToMapDto());
         }
+
+        [HttpGet("gameId/{gameId:int}")]
+        public async Task<IActionResult> GetByGameId([FromRoute] int gameId)
+        {
+            var map = await _mapRepository.GetByGameIdAsync(gameId);
+
+            return map == null ? NotFound() : Ok(map.ToMapDto());
+        }
     }
 }

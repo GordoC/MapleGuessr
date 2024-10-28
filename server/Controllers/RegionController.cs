@@ -31,5 +31,13 @@ namespace server.Controllers
 
             return region == null ? NotFound() : Ok(region.ToRegionDto());
         }
+
+        [HttpGet("gameId/{gameId:int}")]
+        public async Task<IActionResult> GetByGameId([FromRoute] int gameId)
+        {
+            var region = await _regionRepository.GetByGameIdAsync(gameId);
+
+            return region == null ? NotFound() : Ok(region.ToRegionDto());
+        }
     }
 }

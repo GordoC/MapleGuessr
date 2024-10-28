@@ -21,5 +21,11 @@ namespace server
         {
             return await _context.Maps.FindAsync(id);
         }
+
+        public async Task<Map?> GetByGameIdAsync(int gameId)
+        {
+            return await _context.Maps
+                                 .FirstOrDefaultAsync(region => region.GameId == gameId);
+        }
     }
 }

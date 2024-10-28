@@ -21,5 +21,11 @@ namespace server.Repository
         {
             return await _context.Regions.FindAsync(id);
         }
+
+        public async Task<Region?> GetByGameIdAsync(int gameId)
+        {
+            return await _context.Regions
+                                 .FirstOrDefaultAsync(region => region.GameId == gameId);
+        }
     }
 }

@@ -6,5 +6,6 @@ namespace server.Interfaces
     {
         Task<List<Region>> GetAllAsync();
         Task<Region?> GetByIdAsync(int id);
+        Task<Region?> GetByGameIdAsync(int gameId);
     }
 }
