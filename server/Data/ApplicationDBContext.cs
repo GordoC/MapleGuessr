@@ -1,9 +1,10 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using server.Models;
 
 namespace server.Data
 {
-    public class ApplicationDBContext: DbContext
+    public class ApplicationDBContext : IdentityDbContext<User>
     {
         public ApplicationDBContext(DbContextOptions dbContextOptions) 
         : base(dbContextOptions) 
@@ -17,6 +18,8 @@ namespace server.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) 
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Region>()
                 .HasMany(r => r.Maps)
                 .WithOne(m => m.Region)
