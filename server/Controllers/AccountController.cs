@@ -28,11 +28,11 @@ namespace server.Controllers
             {
                 if (!ModelState.IsValid) return BadRequest(ModelState);
 
-                var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == loginDto.UserName.ToLower());
-                if (user == null) return Unauthorized("Invalid username!");
+                var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == loginDto.Email.ToLower());
+                if (user == null) return Unauthorized("Invalid email!");
 
                 var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
-                if (!result.Succeeded) return Unauthorized("IUsername not found and/or password incorrect");
+                if (!result.Succeeded) return Unauthorized("Email not found and/or password incorrect");
 
                 return Ok(
                     new NewUserDto 
