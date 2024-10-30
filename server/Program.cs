@@ -1,3 +1,4 @@
+using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using server.Data;
 using server.Interfaces;
 using server.Models;
 using server.Repository;
+using server.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,7 +51,7 @@ builder.Services.AddAuthentication(options => {
         ValidAudience = builder.Configuration["JWT:Audience"],
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(
-            System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JWT:SigningKey"])
+            Encoding.UTF8.GetBytes(builder.Configuration["JWT:SigningKey"])
         ),
     };
 });
@@ -57,6 +59,7 @@ builder.Services.AddAuthentication(options => {
 builder.Services.AddScoped<IMapRepository, MapRepository>();
 builder.Services.AddScoped<IRegionRepository, RegionRepository>();
 builder.Services.AddScoped<IWorldRepository, WorldRepository>();
+builder.Services.AddScoped<ITokenService, TokenService>();
 
 builder.Services.AddCors(options => {
     options.AddPolicy("reactApp", policyBuilder => {

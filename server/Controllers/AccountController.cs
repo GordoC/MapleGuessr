@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using server.Dtos;
+using server.Interfaces;
 using server.Models;
 
 namespace server.Controllers
@@ -10,9 +11,11 @@ namespace server.Controllers
     public class AccountController : ControllerBase
     {
         private readonly UserManager<User> _userManager;
-        public AccountController(UserManager<User> userManager)
+        private readonly ITokenService _tokenService;
+        public AccountController(UserManager<User> userManager, ITokenService tokenService)
         {
             _userManager = userManager;
+            _tokenService = tokenService;
         }
 
         [HttpPost("register")]
@@ -35,7 +38,14 @@ namespace server.Controllers
                     var roleResult = await _userManager.AddToRoleAsync(user, "User");
                     if (roleResult.Succeeded) 
                     {
-                        return Ok("User created");
+                        return Ok(
+                            new NewUser 
+                            {
+                                UserName = user.UserName,
+                                Email = user.Email,
+                                Token = _tokenService.CreateToken(user)
+                            }
+                        );
                     } 
                     else 
                     {
