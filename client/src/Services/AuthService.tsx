@@ -6,7 +6,7 @@ const server = "https://localhost:7215/server";
 
 export const loginAPI = async (username: string, password: string) => {
     try {
-        const data = await axios.post<UserProfileToken>(server + "/account/login", { 
+        const data = await axios.post<UserProfileToken>(`${server}/account/login`, { 
             username: username,
             password: password
         });
@@ -18,7 +18,7 @@ export const loginAPI = async (username: string, password: string) => {
 
 export const registerAPI = async (username: string, email: string, password: string) => {
     try {
-        const data = await axios.post<UserProfileToken>(server + "/account/register", { 
+        const data = await axios.post<UserProfileToken>(`${server}/account/register`, { 
             username: username,
             email: email,
             password: password
