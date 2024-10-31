@@ -7,7 +7,7 @@ using server.Models;
 
 namespace server.Controllers
 {
-    [Route("api/account")]
+    [Route("server/account")]
     [ApiController]
     public class AccountController : ControllerBase
     {
