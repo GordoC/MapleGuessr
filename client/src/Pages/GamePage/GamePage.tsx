@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import Navbar from '../../Components/Navbar/Navbar';
+import React, { useEffect, useState } from "react";
+import "./GamePage.scss";
 
 const GamePage = () => {
   const [image1, setImage1] = useState<string | null>(null);
@@ -7,28 +7,28 @@ const GamePage = () => {
 
   useEffect(() => {
     // Fetch image 1
-    fetch('https://localhost:7215/server/map/3', {
-      method: 'GET',
-      mode: 'cors',
+    fetch("https://localhost:7215/server/map/3", {
+      method: "GET",
+      mode: "cors",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       }
     })
       .then((response) => response.json())
       .then((data) => setImage1(data.image))
-      .catch(error => console.error('Error fetching image 1:', error));
+      .catch(error => console.error("Error fetching image 1:", error));
 
     // Fetch image 2
-    fetch('https://localhost:7215/server/map/3', {
-      method: 'GET',
-      mode: 'cors',
+    fetch("https://localhost:7215/server/map/3", {
+      method: "GET",
+      mode: "cors",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       }
     })
       .then((response) => response.json())
       .then((data) => setImage2(data.image))
-      .catch(error => console.error('Error fetching image 2:', error));
+      .catch(error => console.error("Error fetching image 2:", error));
   }, []);
 
   return (

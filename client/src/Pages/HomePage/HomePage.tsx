@@ -1,7 +1,7 @@
-import React from 'react';
-import './HomePage.scss';
+import React from "react";
+import "./HomePage.scss";
 import logo from "./logo.png";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
