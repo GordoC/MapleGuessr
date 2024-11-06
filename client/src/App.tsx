@@ -9,20 +9,20 @@ import "react-toastify/dist/ReactToastify.css";
 import { UserProvider } from "./Context/useAuth";
 
 function App() {
-  return (
-    <Router>
-      <UserProvider>
-        <Navbar />
-        <ToastContainer />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/game" element={<GamePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<div>Register Page</div>} />    
-        </Routes>
-      </UserProvider>
-    </Router>
-  );
+    return (
+        <Router>
+            <UserProvider>
+                <Navbar />
+                <ToastContainer />
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/game" element={<GamePage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/register" element={<div>Register Page</div>} />    
+                </Routes>
+            </UserProvider>
+        </Router>
+    );
 }
 
 export default App;

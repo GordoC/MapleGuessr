@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { UserProfile } from "../Models/User"
+import { UserProfile } from "../Models/User";
 import { useNavigate } from "react-router-dom";
 import { loginAPI, registerAPI } from "../Services/AuthService";
 import { toast } from "react-toastify";
@@ -9,7 +9,7 @@ type UserContextType = {
     user: UserProfile | null;
     token: string | null;
     registerUser: (username: string, email: string, password: string) => void;
-    loginUser: (username: string, password: string) => void;
+    loginUser: (email: string, password: string) => void;
     logoutUser: () => void;
     isLoggedIn: () => boolean;
 }
@@ -72,7 +72,7 @@ export const UserProvider = ({ children }: Props) => {
 
     const isLoggedIn = () => {
         return !!user;
-    }
+    };
 
     const logoutUser = () => {
         localStorage.removeItem("user");
@@ -80,13 +80,13 @@ export const UserProvider = ({ children }: Props) => {
         setUser(null);
         setToken(null);
         navigate("/");
-    }
+    };
 
     return (
         <UserContext.Provider value={{ user, token, registerUser, loginUser, logoutUser, isLoggedIn }}>
             {isReady ? children : null}
         </UserContext.Provider>
-    )
+    );
 };
 
 export const useAuth = () => React.useContext(UserContext);

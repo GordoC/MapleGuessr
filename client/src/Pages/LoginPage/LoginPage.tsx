@@ -1,59 +1,70 @@
-// src/Pages/LoginPage.tsx
-import React, { useState } from "react";
-import InputField from "../../Components/InputField/InputField";
-import "./LoginPage.scss";
+import React from "react";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useAuth } from "../../Context/useAuth";
+import { useForm } from "react-hook-form";
+
+type LoginFormsInputs = {
+    email: string;
+  password: string;
+};
+
+const validation = Yup.object().shape({
+    email: Yup.string().required("Email is required"),
+    password: Yup.string().required("Password is required"),
+});
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
-  const [isRegistering, setIsRegistering] = useState(false);
+    const { loginUser } = useAuth();
+    const { register, handleSubmit, formState: { errors } } = useForm<LoginFormsInputs>({
+        resolver: yupResolver(validation)
+    });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (isRegistering) {
-      console.log("Registering with:", { email, password });
-    } else {
-      console.log("Logging in with:", { email, password });
-    }
-  };
+    const handleLogin = (form: LoginFormsInputs) => {
+        loginUser(form.email, form.password);
+    };
 
-  return (
-    <div className="container">
-      <h2>{isRegistering ? "Register" : "Login"}</h2>
-      <form onSubmit={handleSubmit} className="form">
-        {isRegistering && (
-            <InputField
-                label="Username"
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
-        )}
-        <InputField
-          label="Email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <InputField
-          label="Password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit" className="submitButton">
-          {isRegistering ? "Register" : "Login"}
-        </button>
-      </form>
-      <p className="switchText">
-        {isRegistering ? "Already have an account?" : "Don't have an account?"}
-        <span onClick={() => setIsRegistering(!isRegistering)} className="switchLink">
-          {isRegistering ? " Login" : " Register"}
-        </span>
-      </p>
-    </div>
-  );
+    return (
+        <section>
+            <div>
+                <div>
+                    <div>
+                        <h1>Sign in to your account</h1>
+                        <form onSubmit={handleSubmit(handleLogin)}>
+                            <div>
+                                <label htmlFor="email">Email</label>
+                                <input
+                                    type="text"
+                                    id="email"
+                                    placeholder="Email"
+                                    {...register("email")}
+                                />
+                                {errors.email && <p>{errors.email.message}</p>}
+                            </div>
+                            <div>
+                                <label htmlFor="password">Password</label>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    placeholder="••••••••"
+                                    {...register("password")}
+                                />
+                                {errors.password && <p>{errors.password.message}</p>}
+                            </div>
+                            <div>
+                                <a href="#">Forgot password?</a>
+                            </div>
+                            <button type="submit">Sign in</button>
+                            <p>
+                                Don’t have an account yet?{" "}
+                                <a href="#">Sign up</a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
 };
 
 export default LoginPage;

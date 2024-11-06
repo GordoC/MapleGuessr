@@ -4,14 +4,16 @@ import pluginReact from "eslint-plugin-react";
 
 
 export default [
-  {files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"]},
-  {files: ["**/*.js"], languageOptions: {sourceType: "commonjs"}},
-  {languageOptions: { globals: globals.browser }},
-  ...tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended,
-  {
-    rules: {
-        "@typescript-eslint/no-explicit-any": "off"
+    {files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"]},
+    {files: ["**/*.js"], languageOptions: {sourceType: "commonjs"}},
+    {languageOptions: { globals: globals.browser }},
+    ...tseslint.configs.recommended,
+    pluginReact.configs.flat.recommended,
+    {
+        rules: {
+            "@typescript-eslint/no-explicit-any": "off",
+            "indent": ["error", 4],
+            "semi": [2, "always"]
+        }
     }
-}
 ];

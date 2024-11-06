@@ -4,17 +4,17 @@ import { handleError } from "../Helpers/ErrorHandler";
 
 const server = "https://localhost:7215/server";
 
-export const loginAPI = async (username: string, password: string) => {
+export const loginAPI = async (email: string, password: string) => {
     try {
         const data = await axios.post<UserProfileToken>(`${server}/account/login`, { 
-            username: username,
+            email: email,
             password: password
         });
         return data;
     } catch (error) {
         handleError(error);
     }
-}
+};
 
 export const registerAPI = async (username: string, email: string, password: string) => {
     try {
@@ -27,4 +27,4 @@ export const registerAPI = async (username: string, email: string, password: str
     } catch (error) {
         handleError(error);
     }
-}
+};
