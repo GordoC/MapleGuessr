@@ -10,7 +10,7 @@ const HomePage = () => {
                 <div className="hero-text">
                     <h1>MapleGuessr</h1>
                     <p>
-          an interactive map-based guessing game inspired by the world of MapleStory.
+                        an interactive map-based guessing game inspired by the world of MapleStory.
                     </p>
                     <div className="hero-buttons">
                         <Link to="/game" className="primary-button">Play Now</Link>
